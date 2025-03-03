@@ -1,10 +1,16 @@
+
+
+// ignore_for_file: unnecessary_import, avoid_unnecessary_containers, prefer_const_constructors, prefer_const_literals_to_create_immutables, sort_child_properties_last, sized_box_for_whitespace, non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:plant_app_ui/utils/colors.dart';
 
 class Detailscreen extends StatelessWidget {
   final String price;
-  const Detailscreen({super.key, required this.price});
+   final String image;
+    final String name;
+  const Detailscreen({super.key, required this.price,required this.name,required this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -18,39 +24,13 @@ class Detailscreen extends StatelessWidget {
           children: [
           Column(
             children: [
-              Positioned(
-                bottom: 0,
-                child: Container(
-                  height: MediaQuery.of(context).size.height,
-                   width: MediaQuery.of(context).size.width,
-                  color: primarycolor,
-                  child: Padding(padding: EdgeInsets.only(top: 550,left:15),
-                  child: Row(
-                    children: [
-                      Column(
-                        children: [
-                          Text("Height",
-                          style: TextStyle(fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          color: Colors.white),),
-                        SizedBox(height: 5,),
-                        Text("40cm - 50cm",
-                          style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.white),),
-                        ],
-                      ),
-                      
-                    ],
-                  ),
-                  ),
-                )),
+              bootom_parts(context),
             ],
           ),
             Positioned(
               top: 0,
               child: Container(
-                height: MediaQuery.of(context).size.height * 0.85,
+                height: MediaQuery.of(context).size.height * 0.8,
                   width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
@@ -79,7 +59,9 @@ class Detailscreen extends StatelessWidget {
                           
                             children: [
                               GestureDetector(
-                                onTap: () {},
+                                onTap: () {
+                                  Navigator.pop(context);
+                                },
                                 child: const Icon(Icons.arrow_back, size: 30),
                               ),
                               SizedBox(width: 220,),
@@ -104,10 +86,10 @@ class Detailscreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 30),
-            const Padding(
+             Padding(
               padding: EdgeInsets.only(left: 18, top: 79),
               child: Text(
-                " House Shape \n Closeplant",
+                name,
                 textAlign: TextAlign.start,
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -125,8 +107,8 @@ class Detailscreen extends StatelessWidget {
                 children: [
                   Container(
                     decoration: BoxDecoration(
-                      image: DecorationImage(image: NetworkImage("https://media.istockphoto.com/id/1334790507/vector/3d-vector-floor-house-green-plant-palm-in-white-pot-isolated-on-white-illustration-icon.jpg?s=612x612&w=0&k=20&c=dGsYtSp66z31VWTzpwtlZJCDHvbfieGwDSargtfyTxY=")),
-                      borderRadius: BorderRadius.only(bottomLeft: Radius.circular(80))
+                      image: DecorationImage(image: NetworkImage(image)),
+                      borderRadius: BorderRadius.only(bottomLeft: Radius.circular(150))
                     ),
                     height: 400,
                   ),
@@ -183,7 +165,7 @@ class Detailscreen extends StatelessWidget {
             Positioned(
               top: 210,
               right: 250,
-              child: Text("\$45",style: 
+              child: Text(price,style: 
               TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 24
@@ -211,5 +193,79 @@ class Detailscreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Positioned bootom_parts(BuildContext context) {
+    return Positioned(
+              bottom: 0,
+              child: Container(
+                height: MediaQuery.of(context).size.height,
+                 width: MediaQuery.of(context).size.width,
+                color: primarycolor,
+                child: Padding(padding: EdgeInsets.only(top: 550,left:15),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Column(
+                      
+                      children: [
+                          SizedBox(
+                            height: 30,
+                            ),
+                        Text("Height",
+                        style: TextStyle(fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                        color: Colors.white),),
+                      SizedBox(height: 4,),
+                      Text("40cm - 50cm",
+                        style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.white),),
+                      ],
+                    ),
+                    
+                   Column(
+                      
+                      children: [
+                          SizedBox(
+                            height: 30,
+                            ),
+                        Text("Pot",
+                        style: TextStyle(fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                        color: Colors.white),),
+                      SizedBox(height: 4,),
+                      Text("self watering\n           pot",
+                        style: TextStyle(
+                        fontSize: 14,
+                        color: Colors.white),),
+                      ],
+                    ),
+                 
+                     Padding(
+                       padding: const EdgeInsets.only(right:15),
+                       child: Column(
+                        
+                        children: [
+                            SizedBox(
+                              height: 30,
+                              ),
+                          Text("Temperature",
+                          style: TextStyle(fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                          color: Colors.white),),
+                        SizedBox(height: 4,),
+                        Text("18C - 25C",
+                          style: TextStyle(
+                          fontSize: 14,
+                          color: Colors.white),),
+                        ],
+                                             ),
+                     ),
+                    
+                  ],
+                ),
+                ),
+              ));
   }
 }

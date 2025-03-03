@@ -1,10 +1,12 @@
+// ignore_for_file: camel_case_types, prefer_const_constructors, sized_box_for_whitespace, sort_child_properties_last
+
 import 'package:flutter/material.dart';
 
-class product extends StatelessWidget {
+class productdetail extends StatelessWidget {
   final String name;
   final String price;
   final String image;
-  const product({super.key, required this.image,required this.name,required this.price});
+  const productdetail({super.key, required this.image,required this.name,required this.price});
 
   @override
   Widget build(BuildContext context) {
